@@ -22,6 +22,6 @@ int main(void){
 }
 
 // Output of example code: A > B
-// C > A
+// A > C
 // C > B
-// A is unsigned so treated as 10
+// A is unsigned so it is 10 less than the maximum int (2147483647)
