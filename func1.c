@@ -8,9 +8,10 @@ int printer(char string[10]){
     return 0;
 }
 
-int repeats = 0;
+
 
 int repeater(void){
+    static int repeats = 0;
     repeats += 1;
     printf("%d", repeats);
     return 0;
