@@ -1,0 +1,4 @@
+- ptr cannot store the string "Home Comms SW Team" since it is too big. 
+- get_sky_team_name returns void, not name. 
+- "skyName" used but doesn't exist
+- while(1) is completely wrong
