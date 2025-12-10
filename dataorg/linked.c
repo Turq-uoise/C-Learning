@@ -8,6 +8,7 @@ Linked* create_Linked(int data) {
         fprintf(stderr, "Memory allocation failed\n");
         exit(1);
     }
+    
     new_Linked->data = data;
     new_Linked->next = NULL;
     return new_Linked;
@@ -40,7 +41,6 @@ bool delete_value(Linked** head, int value) {
     Linked* curr = *head;
     Linked* prev = NULL;
 
-    // If deleting head
     if (curr->data == value) {
         *head = curr->next;
         free(curr);

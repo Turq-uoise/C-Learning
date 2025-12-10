@@ -3,13 +3,11 @@
 
 #include <stdbool.h>
 
-// Node structure
 typedef struct Linked {
     int data;
     struct Linked* next;
 } Linked;
 
-// Linked list operations
 Linked* create_linked(int data);
 
 void push_front(Linked** head, int data);
