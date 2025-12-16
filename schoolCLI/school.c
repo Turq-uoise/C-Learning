@@ -444,11 +444,11 @@ int main(void)
     printf("Students who study English: \n");
     print_student_list(english_students);
 
-    Teachers* math_teachers = search_teachers_by_subject(teacher_list, MATHS);
+    Teachers* maths_teachers = search_teachers_by_subject(teacher_list, MATHS);
     printf("Teachers who teach Maths: \n");
-    print_teacher_list(math_teachers);
+    print_teacher_list(maths_teachers);
 
-    free_teacher_list_temp(math_teachers);
+    free_teacher_list_temp(maths_teachers);
     free_student_list_temp(english_students);
     free_students(&student_list);
     free_list(&teacher_list);
