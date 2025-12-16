@@ -17,7 +17,7 @@ const char* subjectNames[] = {
 };
 
 typedef enum {
-    A, B, C, D, E, U
+    A, B, C, D, E, U, NA
 } GRADE;
 
 const char* grades[] = {
@@ -37,7 +37,7 @@ const char* grades[] = {
 // Pick student; Pick subject; Return grade
 // Bonus; 4) Search for teachers that teach a given student:
 // Go through each subject student studies -> Run 2)
-// 5) Find students who are taught by given teacher, i.e taught by subject
+// Bonus 5) Find students who are taught by given teacher, i.e taught by subject
 // Run 1) -> Run 2)
 
 typedef struct SubjectList {
@@ -254,6 +254,30 @@ Students* search_students_by_subject_list(Students* head, SUBJECT subject)
     return result_head;
 }
 
+Students* get_student_by_name(Students* head, char name[30]){
+    Students* curr = head;
+    while (curr != NULL) {
+        if (strcmp(curr->name, name) == 0)
+            return curr;
+        curr = curr->next;
+    }
+
+    return NULL;
+}
+
+GRADE get_student_grade_by_subject(Students* head, char name[30], SUBJECT subject)
+{
+    GRADE grade = A;
+    Students* student = get_student_by_name(head, name);
+    if (!student_has_subject(student, subject)){
+        printf("Student does not study %s", subjectNames[subject]);
+        return NA;
+    }
+
+    SubjectList* curr = student->subjects;
+    return grade;
+}
+
 /* ---------- Printing ---------- */
 
 void print_teacher_list(Teachers* head)
@@ -367,8 +391,6 @@ int main(void)
     add_teacher(&teacher_list, "Terrence", MATHS);
     //
 
-    print_teacher_list(teacher_list);
-
     char choice;
     printf("Enter Students Manually? Y/N: ");
     scanf(" %c", &choice);
@@ -415,12 +437,12 @@ int main(void)
         //
     }
 
-    print_student_list(student_list);
+    GRADE john_grade_in_english = get_student_grade_by_subject(student_list, "John", ENGLISH);
+    printf("John got %s in %s!\n", grades[john_grade_in_english], subjectNames[ENGLISH]);
 
     Students* english_students = search_students_by_subject_list(student_list, ENGLISH);
     printf("Students who study English: \n");
     print_student_list(english_students);
-
 
     Teachers* math_teachers = search_teachers_by_subject(teacher_list, MATHS);
     printf("Teachers who teach Maths: \n");
