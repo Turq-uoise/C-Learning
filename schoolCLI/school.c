@@ -170,8 +170,9 @@ bool search(Teachers* head, char name[30])
 {
     Teachers* curr = head;
     while (curr != NULL) {
-        if (strcmp(curr->name, name) == 0)
+        if (strcmp(curr->name, name) == 0) {
             return true;
+        }
         curr = curr->next;
     }
     return false;
