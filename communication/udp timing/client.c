@@ -13,20 +13,19 @@ int main(void){
     len = sizeof(my_addr);
     char buffer[1024];
     
-    printf("%d", ret);
     sd = socket(AF_INET, SOCK_DGRAM, 0);
     memset(&my_addr, 0, sizeof(my_addr));
     my_addr.sin_family = AF_INET;
     my_addr.sin_port = htons(4242);
+    my_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     inet_pton(AF_INET, "127.0.0.1", &my_addr.sin_addr);
-    //ret = connect(sd, (struct sockaddr *)&my_addr, sizeof(my_addr));
+    printf("client hello");
     
-    if(ret == 0) {
-        while((ret = recvfrom(sd, buffer, sizeof(buffer) - 1, 0, (struct sockaddr*)&my_addr, &len)) > 0) {
-            buffer[ret] = '\0';
-            printf("%s", buffer);
-        }
+    for (int i = 0; i < 10; i++) {
+        int received_bytes = recvfrom(sd, buffer, 1024, 0, (struct sockaddr*)&my_addr, &len);
+        printf("%s", buffer);
     }
+
     close(sd);
     return 0;
 }

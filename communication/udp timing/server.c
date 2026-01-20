@@ -30,8 +30,7 @@ int main(void){
     printf("Client started at %s: %d\n", time_sent, length);
 
     while(1){
-        len = sendto(sd, time_sent, length, 0, 
-            (struct sockaddr*)&cl_addr, addrlen);
+        sendto(sd, time_sent, length, 0, (struct sockaddr*)&cl_addr, addrlen);
         sleep(5);
     }
 
